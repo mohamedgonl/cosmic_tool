@@ -3,7 +3,7 @@ const fs = require('fs')
 
 
 
-crawl= async(loc, start, stop)=>{
+const crawl = async(loc, start, stop)=>{
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     
@@ -61,7 +61,7 @@ const start = async () => {
     let rawdata = fs.readFileSync('data.json');
     let data = JSON.parse(rawdata);
     data.map(e => {
-        if(e.QUAL >= 100) console.log(e);
+        if(e.QUAL >= 100) crawl(e.POS);
     })
 }
 start()
